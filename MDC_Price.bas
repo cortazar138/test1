@@ -1,6 +1,7 @@
 Attribute VB_Name = "Module2"
 Sub Cena()
 
+Dim bez_sensu As Boolean
 Dim a As Boolean
 Dim b As Boolean
 Dim c As Boolean
@@ -8,7 +9,7 @@ Dim scales As Boolean
 Dim Blad As String
 Dim k As Integer
 Dim Valid As Date
-
+   'przykladowa zmiana GiT 
 If Not IsObject(App) Then
    Set SapGuiAuto = GetObject("SAPGUI")
    Set App = SapGuiAuto.GetScriptingEngine
