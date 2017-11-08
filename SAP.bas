@@ -93,7 +93,8 @@ Sub Open_OA(session As Variant, OA As String)
 
 session.SendCommand ("/nME32K")
 session.FindById("wnd[0]/usr/ctxtRM06E-EVRTN").Text = OA
-session.FindById("wnd[0]").SendVKEy 0
+
+            session.FindById("wnd[0]").SendVKEy 0
 
 
 End Sub
@@ -150,4 +151,11 @@ If k < 10 Then
 Else
     session.FindById("wnd[0]/usr/tabsTABSPR1/tabpSP" & CStr(k) & "").Select
 End If
+End Sub
+
+Sub Open_Transaction(session, T_Code As String)
+
+session.FindById("wnd[0]/tbar[0]/okcd").Text = T_Code
+session.FindById("wnd[0]").SendVKEy 0
+
 End Sub
