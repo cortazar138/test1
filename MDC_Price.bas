@@ -54,7 +54,7 @@ If Cells(i, 24).Value = "" Then
     k = k + 1
     Loop While Valid <> session.findById("wnd[1]/usr/tblSAPLV14ATCTRL_D0102/ctxtVAKE-DATBI[1,0]").Text
     session.findById("wnd[1]/tbar[0]/btn[8]").Press
-    k = 0
+    k = 0              
     scales = session.findById("wnd[0]/usr/tblSAPMV13ATCTRL_D0201/chkRV13A-KOSTKZ[7," & CStr(k) & "]").Selected
     Condition = session.findById("wnd[0]/usr/tblSAPMV13ATCTRL_D0201/ctxtKONP-KSCHL[0," & CStr(k) & "]").Text
     'szuka nieusunietej ceny PB00
