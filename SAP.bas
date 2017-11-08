@@ -151,4 +151,3 @@ Else
     session.FindById("wnd[0]/usr/tabsTABSPR1/tabpSP" & CStr(k) & "").Select
 End If
 End Sub
-
