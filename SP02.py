@@ -1,3 +1,4 @@
+#python program to modify SP02 txt output
 file = open("test.txt", "r")
 lines = file.readlines()
 file.close
