@@ -16,27 +16,31 @@ If IsObject(WScript) Then
    WScript.ConnectObject session, "on"
    WScript.ConnectObject App, "on"
 End If
-
-
 End Sub
 
+Sub Verify(session, id As String, Optional bol = False)
+On Error GoTo NotFound
+Set ver = session.FindById(id)
+bol = True
+Exit Sub
+NotFound:
+bol = False
+Exit Sub
+End Sub
 
 Sub Save(session, Optional info)
 'session: name of session you want to save
 'info: name of variable you want to store the text from the sbar
 session.FindById("wnd[0]").SendVKEy (11)
 info = session.FindById("wnd[0]/sbar").Text
-
 End Sub
 
 
 Sub OA_Line(session As Variant, line As Integer)
-
 session.FindById("wnd[0]/usr/txtRM06E-EBELP").Text = line
 session.FindById("wnd[0]").SendVKEy 0
 session.FindById("wnd[0]/usr/tblSAPMM06ETC_0220/txtRM06E-EVRTP[0,0]").SetFocus
 session.FindById("wnd[0]/usr/tblSAPMM06ETC_0220/txtRM06E-EVRTP[0,0]").caretPosition = 2
-
 End Sub
 
 Sub PO_Address(session As Variant, adr)
@@ -61,7 +65,6 @@ End Sub
 Sub PO_Adr(session As Variant, adr)
 'alias for PO_address
 Call PO_Address(session, adr)
-
 End Sub
 
 Sub PO_Item(session As Variant, adr, item As Integer)
@@ -74,7 +77,6 @@ nazwa = Left(nazwa, 3)
 nazwa = Replace(nazwa, " ", "")
 nazwa = Replace(nazwa, "[", "")
 it = CInt(nazwa) * 10
-
 If it = item Then
     Exit Sub
 ElseIf it < item Then
@@ -84,24 +86,17 @@ Else
     session.FindById("wnd[0]/usr/subSUB0:SAPLMEGUI:00" & CStr(adr) & "/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB1:SAPLMEGUI:6000/btn%#AUTOTEXT001").Press
     GoTo Sprawdz
 End If
-
 End Sub
 
 
 Sub Open_OA(session As Variant, OA As String)
-
-
 session.SendCommand ("/nME32K")
 session.FindById("wnd[0]/usr/ctxtRM06E-EVRTN").Text = OA
-
-            session.FindById("wnd[0]").SendVKEy 0
-
-
+session.FindById("wnd[0]").SendVKEy 0
 End Sub
 
 
 Sub PR_Line(session As Variant, item As Integer)
-
 'adr: mobile address of the PO
 Dim nazwa As String
 Dim it As Integer
@@ -111,7 +106,6 @@ nazwa = Left(nazwa, 3)
 nazwa = Replace(nazwa, " ", "")
 nazwa = Replace(nazwa, "[", "")
 it = CInt(nazwa) * 10
-
 If it = item Then
     Exit Sub
 ElseIf it < item Then
@@ -121,7 +115,6 @@ Else
     session.FindById("wnd[0]/usr/subSUB0:SAPLMEGUI:0015/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB1:SAPLMEGUI:6000/btn%#AUTOTEXT001").Press
     GoTo Sprawdz
 End If
-
 End Sub
 
 
@@ -154,8 +147,6 @@ End If
 End Sub
 
 Sub Open_Transaction(session, T_Code As String)
-
 session.FindById("wnd[0]/tbar[0]/okcd").Text = T_Code
 session.FindById("wnd[0]").SendVKEy 0
-
 End Sub
